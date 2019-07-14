@@ -36,6 +36,15 @@ res.render('create', { categories: result });
 
 });
 
+router.get('/delete/:id', function(req, res, next) {
+  var id = req.params.id
+  var query = "DELETE FROM activities WHERE id = ?";
+  connect.query(query , id , function(error, result){
+    if(error) res.send(error.message)
+    res.redirect('/');
+  })
+  //res.render('delete');
+});
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
